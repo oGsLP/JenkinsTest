@@ -1,26 +1,23 @@
 pipeline {
-    agent any
     environment{
         ENVV = "envv"
     }
 
+
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                bat 'mvn --version'
-            }
-        }
-        stage('test'){
-            steps{
-                echo "test "
-            }
-        }
-        stage('deploy'){
-            steps{
-                echo "deploy "
+                sh 'mvn -B -DskipTests clean package'
             }
         }
     }
+
     post{
         always{
              echo "test ${ENVV}"
