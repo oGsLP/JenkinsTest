@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
@@ -19,7 +14,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run -d -p 8082:8080 java_hello_world:1.0.0'
+                sh 'docker run -d -p 8090:8090 java_hello_world:1.0.0'
             }
         }
     }
