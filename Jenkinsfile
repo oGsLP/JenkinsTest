@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn install'
                 sh 'mvn package'
             }
         }
@@ -21,7 +21,7 @@ pipeline {
 
     post{
         always{
-             echo "test ${ENVV}"
+             echo "test"
         }
         success {
              echo 'This will run only if successful'
