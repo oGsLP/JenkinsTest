@@ -1,9 +1,4 @@
 pipeline {
-    environment{
-        ENVV = "envv"
-    }
-
-
     agent {
         docker {
             image 'maven:3-alpine'
@@ -14,6 +9,17 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh 'mvn package'
+            }
+        }
+        stage('Docker-build'){
+            steps{
+                sh 'docker build -f Dockerfile -t java_hello_world:1.0.0 .'
+            }
+        }
+        stage('Deploy'){
+            steps{
+                sh 'docker run -d -p 8082:8080 java_hello_world:1.0.0'
             }
         }
     }
