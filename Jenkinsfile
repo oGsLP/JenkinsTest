@@ -7,14 +7,15 @@ pipeline {
     }
     stages {
 
-        stage('Maven-install') {
-            steps {
-                sh 'mvn install'
-            }
-        }
+        //stage('Maven-install') {
+        //    steps {
+        //        sh 'mvn install'
+        //   }
+        //}
         stage('Maven-Build') {
             steps {
-                sh 'mvn package'
+               // sh 'mvn package'
+               sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Docker-build'){
