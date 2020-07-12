@@ -20,12 +20,12 @@ pipeline {
         }
         stage('Docker-build'){
             steps{
-                sh 'sudo docker build -f Dockerfile -t java_hello_world:1.0.0 .'
+                sh 'docker build -f Dockerfile -t java_hello_world:1.0.0 .'
             }
         }
         stage('Deploy'){
             steps{
-                sh 'sudo docker run -d -p 8090:8090 java_hello_world:1.0.0'
+                sh 'docker run -d -p 8090:8090 java_hello_world:1.0.0'
             }
         }
     }
