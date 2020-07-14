@@ -10,4 +10,4 @@ spec:
       protocol: TCP
       nodePort: 31111
   selector:
-    run: hello-k8s
+    app: hello-k8s
