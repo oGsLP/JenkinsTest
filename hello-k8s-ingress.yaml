@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-k8s-ingress
+spec:
+  rules:
+    - host: hoperun.cf
+      http:
+        paths:
+          - path: /index
+            backend:
+              serviceName: hello-k8s-service
+              servicePort: 80
